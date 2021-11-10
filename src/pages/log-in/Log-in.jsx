@@ -58,7 +58,7 @@ const LogIn = () => {
           </Button>
           <Divider className="mt-4" />
           <Link to="/sign-up">
-            <Button block>Sing up</Button>
+            <Button block>Sign up</Button>
           </Link>
         </Card>
       </div>
