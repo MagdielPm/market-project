@@ -3,6 +3,7 @@ import "antd/dist/antd.css";
 import { Typography, Input, Card, Button, Divider } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const { Title } = Typography;
 
@@ -20,14 +21,12 @@ const LogIn = () => {
   };
 
   const logInUser = () => {
-    console.log(email);
-    console.log(password);
-
     axios
       .post(LOG_IN_USER_URL, { email: email, password: password })
       .then((response) => {
         console.log(response.status);
-        console.log(response.data);
+        const token = response.data.token;
+        Cookies.set("token", token);
       });
   };
 
@@ -56,7 +55,7 @@ const LogIn = () => {
           >
             Log in
           </Button>
-          <Divider className="mt-4" />
+          <Divider className="mt-4"> or </Divider>
           <Link to="/sign-up">
             <Button block>Sing up</Button>
           </Link>
