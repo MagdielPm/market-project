@@ -6,7 +6,7 @@ import axios from "axios";
 
 const { Title, Text } = Typography;
 
-const CREATE_USER_URL = "http://localhost:3001/api/users/signup";
+const CREATE_USER_URL = "http://localhost:3000/api/users/signup";
 
 const SignUp = () => {
   let navigate = useNavigate();

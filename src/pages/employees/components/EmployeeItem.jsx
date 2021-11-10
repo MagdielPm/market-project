@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 
 const { Text, Title } = Typography;
 
-const EMPLOYEE_URL = "http://localhost:3001/api/employees/";
+const EMPLOYEE_URL = "http://localhost:3000/api/employees/";
 
 const EmployeeItem = ({
   id,

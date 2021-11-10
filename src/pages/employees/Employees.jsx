@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 
 const { Title } = Typography;
 
-const EMPLOYEES_URL = "http://localhost:3001/api/employees";
+const EMPLOYEES_URL = "http://localhost:3000/api/employees";
 
 const Customers = () => {
   const [employeesList, setEmployeeList] = useState(null);

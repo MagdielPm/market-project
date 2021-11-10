@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 
 const { Title } = Typography;
 
-const LOG_IN_USER_URL = "http://localhost:3001/api/users/login";
+const LOG_IN_USER_URL = "http://localhost:3000/api/users/login";
 
 const LogIn = () => {
   let navigate = useNavigate();
