@@ -1,0 +1,33 @@
+pipeline {
+
+    agent any
+
+    stages {
+        stage('Build docker image') {
+            steps {
+                copyArtifacts(
+                    projectName: "rest_market_frontend_build",
+                    selector: upstream(),
+                    filter: "build/**"
+                )
+                sh "sudo docker build . -t rest-market-frontend-${GIT_BRANCH}:1.0.0-${BUILD_NUMBER}"
+            }
+        }
+        stage('Delete previous version docker container') {
+            steps {
+                sh "sudo docker rm -f rest-market-frontend-live"
+            }
+        }
+        stage('Create and activate docker container for live version') {
+            steps {
+                sh "sudo docker run --name rest-market-frontend-live -d -p 80:80 rest-market-frontend-${GIT_BRANCH}:1.0.0-${BUILD_NUMBER}"
+            }
+        }
+    }
+    post {
+        success {
+            echo "All done."
+            echo "Live version has been deployed."
+        }
+    }
+}

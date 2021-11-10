@@ -1,0 +1,32 @@
+pipeline {
+
+    agent any
+
+    tools {nodejs "node"}
+
+    stages {
+        stage('Install dependencies') {
+            steps {
+                sh "npm install yarn -g"
+		        sh "yarn install"
+            }
+        }
+        stage('Build') {
+            steps {
+                sh "yarn build"
+            }
+        }
+        stage('Test') {
+            steps {
+                sh "yarn test"
+            }
+        }
+    }
+    post {
+        success {
+            archiveArtifacts artifacts: "build/**", fingerprint: true
+            echo "Run rest_market_frontend_deploy pipeline"
+            build job: "rest_market_frontend_deploy"
+        }
+    }
+}
