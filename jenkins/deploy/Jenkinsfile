@@ -8,6 +8,7 @@ pipeline {
                 name "build_output"
             }
             steps {
+                sh ls
                 sh "sudo docker build . -t rest-market-frontend-${GIT_BRANCH}:1.0.0-${BUILD_NUMBER}"
             }
         }
