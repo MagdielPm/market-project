@@ -8,8 +8,8 @@ pipeline {
                 copyArtifacts(
                     projectName: "rest_market_frontend_build",
                     selector: upstream(),
-                    filter: "build/*",
-                    target: "/build"
+                    filter: 'build/*',
+                    target: '/build'
                 )
                 sh "sudo docker build . -t rest-market-frontend-${GIT_BRANCH}:1.0.0-${BUILD_NUMBER}"
             }
