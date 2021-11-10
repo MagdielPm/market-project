@@ -7,7 +7,7 @@ pipeline {
             steps {
                 copyArtifacts(
                     projectName: "rest_market_frontend_build",
-                    selector: upstream(),
+                    //selector: upstream(),
                     filter: 'build/*',
                     target: '/build'
                 )
