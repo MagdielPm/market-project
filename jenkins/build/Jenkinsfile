@@ -24,6 +24,7 @@ pipeline {
     }
     post {
         success {
+            archiveArtifacts artifacts: "build/**", fingerprint: true 
             echo "Run rest_market_frontend_deploy pipeline"
             build job: "rest_market_frontend_deploy"
         }
