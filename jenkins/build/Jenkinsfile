@@ -24,8 +24,8 @@ pipeline {
     }
     post {
         success {
-            echo "Run market-project_deploy pipeline"
-            build job: "market-project_deploy"
+            echo "Run rest_market_frontend_deploy pipeline"
+            build job: "rest_market_frontend_deploy"
         }
     }
 }

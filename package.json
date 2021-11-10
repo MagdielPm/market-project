@@ -17,7 +17,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "dev": "craco start",
+    "dev": "PORT=2000 craco start",
     "build": "craco build",
     "test": "craco test"
   },
