@@ -14,7 +14,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh "yarn build"
-                stash includes "build/", name "build_output"
+                stash includes: "build/", name: "build_output"
             }
         }
         stage('Test') {

@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Build docker image') {
             steps {
-                unstash name "build_output"
+                unstash name: "build_output"
                 sh ls
                 sh "sudo docker build . -t rest-market-frontend-${GIT_BRANCH}:1.0.0-${BUILD_NUMBER}"
             }
