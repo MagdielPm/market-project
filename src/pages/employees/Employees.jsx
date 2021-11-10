@@ -26,7 +26,7 @@ const Customers = () => {
       setEmployeeList(employees);
     };
     fetchEmployees();
-  }, []);
+  }, [token]);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
