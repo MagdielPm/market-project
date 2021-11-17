@@ -30,7 +30,7 @@ const LogIn = () => {
       .post(LOG_IN_USER_URL, { email: email, password: password })
       .then((response) => {
         console.log(response.status);
-        if(response.status == 200) {
+        if(response.status === 200) {
           const token = response.data.token;
           Cookies.set("token", token);
           navigate("/app/dashboard");
