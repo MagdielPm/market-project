@@ -8,7 +8,7 @@ import Employees from "../employees/Employees";
 import Products from "../products/Products";
 
 import Cookies from "js-cookie";
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 
 const { Header, Content, Sider } = Layout;
@@ -16,11 +16,6 @@ const { Title } = Typography;
 
 const Dashboard = () => {
   let navigate = useNavigate();
-
-  function LogOutUser() {
-    Cookies.remove("token");
-    useNavigate("/app/log-in");
-  }
 
   const [currentSection, setCurrentSection] = useState(1);
   function renderSwitch(section) {

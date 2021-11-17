@@ -26,7 +26,11 @@ const LogIn = () => {
       .then((response) => {
         console.log(response.status);
         const token = response.data.token;
-        Cookies.set("token", token);
+        if(token) {
+          Cookies.set("token", token);
+          navigate("/app/dashboard");
+        }
+
       });
   };
 
@@ -47,10 +51,7 @@ const LogIn = () => {
           <Button
             className="mt-8"
             type="primary"
-            onClick={() => {
-              logInUser();
-              navigate("/app/dashboard");
-            }}
+            onClick={() => { logInUser(); }}
             block
           >
             Log in
