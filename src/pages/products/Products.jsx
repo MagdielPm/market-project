@@ -6,7 +6,7 @@ import axios from "axios";
 import ProductItem from "./components/ProductItem";
 import Cookies from "js-cookie";
 
-import { store } from "react-notifications-component";
+//import { store } from "react-notifications-component";
 
 
 const { Title } = Typography;

@@ -5,9 +5,9 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 
-import ReactNotification from "react-notifications-component";
+//import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
-import { store } from "react-notifications-component";
+//import { store } from "react-notifications-component";
 
 
 const { Title } = Typography;
