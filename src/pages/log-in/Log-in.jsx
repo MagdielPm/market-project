@@ -49,14 +49,14 @@ const LogIn = () => {
             type="primary"
             onClick={() => {
               logInUser();
-              navigate("/dashboard");
+              navigate("/app/dashboard");
             }}
             block
           >
             Log in
           </Button>
           <Divider className="mt-4"> or </Divider>
-          <Link to="/sign-up">
+          <Link to="/app/sign-up">
             <Button block>Sign up</Button>
           </Link>
         </Card>

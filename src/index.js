@@ -13,11 +13,12 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Routes>
-          <Route path="/log-in" element={<LogIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/app/log-in" element={<LogIn />} />
+          <Route path="/app/sign-up" element={<SignUp />} />
+          <Route path="/app/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
+      <LogIn />   // Entrypoint
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

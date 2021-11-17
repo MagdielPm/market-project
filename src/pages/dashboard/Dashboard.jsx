@@ -1,17 +1,27 @@
 import React, { useState } from "react";
 import "antd/dist/antd.css";
-import { Layout, Menu, Typography } from "antd";
+import { Button, Layout, Menu, Typography } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import Employees from "../employees/Employees";
 //import Foods from "../foods/Foods";
 //
 import Products from "../products/Products";
 
+import Cookies from "js-cookie";
+import { Navigate, useNavigate } from "react-router";
+
 
 const { Header, Content, Sider } = Layout;
 const { Title } = Typography;
 
 const Dashboard = () => {
+  let navigate = useNavigate();
+
+  function LogOutUser() {
+    Cookies.remove("token");
+    useNavigate("/app/log-in");
+  }
+
   const [currentSection, setCurrentSection] = useState(1);
   function renderSwitch(section) {
     switch (section) {
@@ -27,6 +37,7 @@ const Dashboard = () => {
         return <div>Customers</div>;
     }
   }
+
   return (
     <Layout>
       <Sider
@@ -88,7 +99,12 @@ const Dashboard = () => {
         </Menu>
       </Sider>
       <Layout>
-        <Header className="bg-gray-50 p-0" />
+        <Header className="bg-gray-50 p-0">
+          <Button type="primary" danger style={{position: "relative", float: "right"}} onClick={() => {
+            Cookies.remove("token");
+            navigate("/app/log-in");
+          }}>Log out</Button>
+        </Header>
         <Content className="mt-6 mr-4 ml-4 mb-6">
           <div className="bg-white p-6 h-full">
             {renderSwitch(currentSection)}
