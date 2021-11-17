@@ -6,7 +6,7 @@ import Cookies from "js-cookie";
 
 const { Text, Title } = Typography;
 
-const PRODUCT_URL = "http://localhost:3000/api/api/products/";
+const PRODUCT_URL = "http://localhost:3000/api/products/";
 
 const ProductItem = ({
     id,
@@ -21,7 +21,7 @@ const ProductItem = ({
     
     const deleteProduct = (id) => {
         console.log(id);
-        axios.delete(EMPLOYEE_URL + id, {
+        axios.delete(PRODUCT_URL + id, {
             headers: {
               user_token: token,
             },
@@ -89,25 +89,25 @@ const ProductItem = ({
     return (
         <tr>
             <td>
-                <Text>{id}</Text>
+                <Text style={{paddingRight: 15}}>{id}</Text>
             </td>
-            <td>
+            <td style={{paddingRight: 15}}>
                 <Text>{name}</Text>
             </td>
-            <td>
+            <td style={{paddingRight: 15}}>
                 <Text>{description}</Text>
             </td>
-            <td>
+            <td style={{textAlign: 'center', paddingRight: 15}}>
                 <Text>{price}</Text>
             </td>
-            <td>
+            <td style={{textAlign: 'center', paddingRight: 15}}>
                 <Text>{price_per_kg}</Text>
             </td>
-            <td>
+            <td style={{textAlign: 'center', paddingRight: 15}}>
                 <Text>{stock}</Text>
             </td>
-            <td>
-                <Text>{require_id_to_sell}</Text>
+            <td style={{textAlign: 'center', paddingRight: 15}}>
+                { require_id_to_sell === true ? <Text>Yes</Text> : <Text>No</Text> }
             </td>
             <td>
                 <div>
@@ -119,7 +119,7 @@ const ProductItem = ({
                     </Button>
                 </div>
             </td>
-            <Modal title="Edit product" visible={isModalVisible} onOk={() => { handleNewProduct(); } onCancel={() => { handleCancel(); }}>
+            <Modal title="Edit product" visible={isModalVisible} onOk={() => { handleNewProduct(); }} onCancel={() => { handleCancel(); }}>
                 <Title level={5}>Name</Title>
                 <Input
                     placeholder=""

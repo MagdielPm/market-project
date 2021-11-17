@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 
 const { Title } = Typography;
 
-const PRODUCT_URL = "http://localhost:3000/api/api/products/";
+const PRODUCT_URL = "http://localhost:3000/api/products";
 
 const Products = () => {
     const [productsList, setProductList] = useState(null);
@@ -33,32 +33,32 @@ const Products = () => {
 
     const [isModalVisible, setIsModalVisible] = useState(false);
 
-    const [name, setName] = useState("");
+    const [name, setName] = useState(null);
     const handleName = (event) => {
         setName(event.target.value);
     };
 
-    const [description, setDescription] = useState("");
+    const [description, setDescription] = useState(null);
     const handleDescription = (event) => {
         setDescription(event.target.value);
     };
 
-    const [price, setPrice] = useState("");
+    const [price, setPrice] = useState(null);
     const handlePrice = (event) => {
         setPrice(event.target.value);
     };
 
-    const [price_per_kg, setPrice_per_kg] = useState("");
+    const [price_per_kg, setPrice_per_kg] = useState(null);
     const handlePrice_per_kg = (event) => {
         setPrice_per_kg(event.target.value);
     };
 
-    const [stock, setStock] = useState("");
+    const [stock, setStock] = useState(null);
     const handleStock = (event) => {
         setStock(event.target.value);
     };
 
-    const [require_id_to_sell, setRequire_id_to_sell] = useState("");
+    const [require_id_to_sell, setRequire_id_to_sell] = useState(null);
     const handleRequire_id_to_sell = (event) => {
         setRequire_id_to_sell(event.target.value);
     };
@@ -103,25 +103,25 @@ const Products = () => {
                     <thead>
                         <tr>
                             <th>
-                                <Title level={5}>ID</Title>
+                                <Title level={5} style={{paddingRight: 15}}>ID</Title>
                             </th>
                             <th>
-                                <Title level={5}>Name</Title>
+                                <Title level={5} style={{paddingRight: 15}}>Name</Title>
                             </th>
                             <th>
-                                <Title level={5}>Description</Title>
+                                <Title level={5} style={{paddingRight: 15}}>Description</Title>
                             </th>
                             <th>
-                                <Title level={5}>Price</Title>
+                                <Title level={5} style={{paddingRight: 15}}>Price</Title>
                             </th>
                             <th>
-                                <Title level={5}>Price per kg</Title>
+                                <Title level={5} style={{paddingRight: 15}}>Price per kg</Title>
                             </th>
                             <th>
-                                <Title level={5}>Stock</Title>
+                                <Title level={5} style={{paddingRight: 15}}>Stock</Title>
                             </th>
                             <th>
-                                <Title level={5}>Require id to sell</Title>
+                                <Title level={5} style={{paddingRight: 15}}>Require id to sell</Title>
                             </th>
                         </tr>
                     </thead>
@@ -133,12 +133,12 @@ const Products = () => {
                                         <ProductItem 
                                             key={product.id}
                                             id={product.id}
-                                            name={product.name}
-                                            description={product.description}
-                                            price={product.price}
-                                            price_per_kg={product.price_per_kg}
-                                            stock={product.stock}
-                                            require_id_to_sell={product.require_id_to_sell}
+                                            nameProduct={product.name}
+                                            descriptionProduct={product.description}
+                                            priceProduct={product.price}
+                                            price_per_kgProduct={product.price_per_kg}
+                                            stockProduct={product.stock}
+                                            require_id_to_sellProduct={product.require_id_to_sell}
                                         />
                                     );
                                 })
@@ -150,7 +150,7 @@ const Products = () => {
                     </tbody>
                 </table>
                 <div></div>
-                <Modal title="New product" visible={isModalVisible} onOk={() => { handleNewProduct(); } onCancel={() => { handleCancel(); }}>
+                <Modal title="New product" visible={isModalVisible} onOk={() => { handleNewProduct(); }} onCancel={() => { handleCancel(); }}>
                     <Title level={5}>Name</Title>
                     <Input placeholder="" onChange={handleName} />
                     <Title level={5} className="mt-4">Description</Title>

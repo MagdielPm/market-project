@@ -3,7 +3,7 @@ import "antd/dist/antd.css";
 import { Layout, Menu, Typography } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import Employees from "../employees/Employees";
-import Foods from "../foods/Foods";
+//import Foods from "../foods/Foods";
 //
 import Products from "../products/Products";
 
