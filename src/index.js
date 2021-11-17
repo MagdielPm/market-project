@@ -8,16 +8,18 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <div>
         <Routes>
-          <Route path="/log-in" element={<LogIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/app/log-in" element={<LogIn />} />
+          <Route path="/app/sign-up" element={<SignUp />} />
+          <Route path="/app/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
+      <LogIn />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
