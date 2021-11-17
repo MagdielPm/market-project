@@ -3,8 +3,7 @@ import "antd/dist/antd.css";
 import { Layout, Menu, Typography } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import Employees from "../employees/Employees";
-//import Foods from "../foods/Foods";
-//
+import Foods from "../foods/Foods";
 import Products from "../products/Products";
 
 
@@ -20,7 +19,7 @@ const Dashboard = () => {
       case 2:
         return <div>Customers</div>;
       case 3:
-        return <div>Foods</div>;
+        return <div><Foods /></div>;
       case 4:
         return <div><Products /></div>;
       default:
