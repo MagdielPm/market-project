@@ -5,7 +5,7 @@ import { UserOutlined } from "@ant-design/icons";
 import Employees from "../employees/Employees";
 import Foods from "../foods/Foods";
 import Products from "../products/Products";
-
+import Customers from "../customers/Customers";
 // For log out button
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router";
@@ -27,7 +27,7 @@ const Dashboard = () => {
       case 1:
         return <div><Employees /></div>;
       case 2:
-        return <div>Customers</div>;
+        return <div><Customers /></div>;
       case 3:
         return <div><Foods /></div>;
       case 4:
