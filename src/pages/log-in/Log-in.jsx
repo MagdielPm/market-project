@@ -5,6 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import { store } from "react-notifications-component";
+
+
 const { Title } = Typography;
 
 const LOG_IN_USER_URL = "http://localhost:3000/api/users/login";
@@ -25,18 +30,18 @@ const LogIn = () => {
       .post(LOG_IN_USER_URL, { email: email, password: password })
       .then((response) => {
         console.log(response.status);
-        const token = response.data.token;
-        if(token) {
+        if(response.status == 200) {
+          const token = response.data.token;
           Cookies.set("token", token);
           navigate("/app/dashboard");
         }
-
       });
   };
 
   return (
     <div className="h-screen w-screen flex justify-center  bg-gray-50">
       <div className="flex flex-col w-64 xl:w-80 pt-20 xl:pt-40">
+      
         <Card>
           <Title level={4}>Log in</Title>
           <Divider className="mt-4" />

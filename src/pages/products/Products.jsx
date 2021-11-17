@@ -6,6 +6,9 @@ import axios from "axios";
 import ProductItem from "./components/ProductItem";
 import Cookies from "js-cookie";
 
+import { store } from "react-notifications-component";
+
+
 const { Title } = Typography;
 
 const PRODUCT_URL = "http://localhost:3000/api/products";

@@ -13,6 +13,7 @@
     "js-cookie": "^3.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-notifications-component": "^3.1.0",
     "react-router-dom": "^6.0.1",
     "react-scripts": "4.0.3",
     "web-vitals": "^1.0.1"
@@ -20,7 +21,7 @@
   "scripts": {
     "dev": "PORT=2000 craco start",
     "build": "craco build",
-    "test": "jest --watchAll"
+    "test": "craco test --watchAll"
   },
   "eslintConfig": {
     "extends": [

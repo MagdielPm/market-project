@@ -7,8 +7,13 @@ import Employees from "../employees/Employees";
 //
 import Products from "../products/Products";
 
+// For log out button
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router";
+
+// To show toast notifications
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
 
 
 const { Header, Content, Sider } = Layout;
@@ -35,6 +40,7 @@ const Dashboard = () => {
 
   return (
     <Layout>
+      <ReactNotification />
       <Sider
         className="h-screen"
         breakpoint="lg"
