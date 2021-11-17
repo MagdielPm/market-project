@@ -17,7 +17,7 @@ test('Correct heading ID', () => {
 
 test('Correct heading Name Food', () => {
     render(<Foods />);
-    expect(screen.getByText('Name Food')).toHaveTextContent('Name Food')
+    expect(screen.getByText('Food Name')).toHaveTextContent('Food Name')
 });
 
 test('Correct heading Food Description', () => {
@@ -30,9 +30,9 @@ test('Correct heading Ingredients', () => {
     expect(screen.getByText('Ingredients')).toHaveTextContent('Ingredients')
 });
 
-test('Correct heading   Food Price', () => {
+test('Correct heading Food Price', () => {
     render(<Foods />);
-    expect(screen.getByText(' Food Price')).toHaveTextContent(' Food Price')
+    expect(screen.getByText('Food Price')).toHaveTextContent('Food Price')
 });
 
 test('Correct heading Food Expiration', () => {
