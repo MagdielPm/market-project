@@ -17,7 +17,7 @@ const Customers = () => {
 
   useEffect(() => {
     const fetchCustomers = async () => {
-      const customerList = await axios.get(CUSTOMERS_URL, {
+      const customerList = await axios.get(CUSTOMER_URL, {
         headers: {
           user_token: token,
         },
@@ -63,7 +63,7 @@ const Customers = () => {
   const handleNewCustomer = () => {
     axios
       .post(
-        CUSTOMERS_URL,
+        CUSTOMER_URL,
         {
           fullName: fullName,
           numberPhone: numberPhone,
