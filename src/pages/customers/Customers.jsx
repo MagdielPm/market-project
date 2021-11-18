@@ -17,7 +17,7 @@ const Customers = () => {
 
   useEffect(() => {
     const fetchCustomers = async () => {
-      const customerList = await axios.get(CUSTOMERS_URL, {
+      const customerList = await axios.get(CUSTOMER_URL, {
         headers: {
           user_token: token,
         },
@@ -45,11 +45,6 @@ const Customers = () => {
     setEmail(event.target.value);
   };
 
-  const [job, setJob] = useState("");
-  const handleJob = (event) => {
-    setJob(event.target.value);
-  };
-
   const [state, setState] = useState("");
   const handleState = (event) => {
     setState(event.target.value);
@@ -68,7 +63,6 @@ const Customers = () => {
           fullName: fullName,
           numberPhone: numberPhone,
           email: email,
-          job: job,
           state: state,
           city: city,
         },
@@ -120,9 +114,6 @@ const Customers = () => {
                 <Title level={5}> Email </Title>
               </th>
               <th>
-                <Title level={5}> Job </Title>
-              </th>
-              <th>
                 <Title level={5}> State </Title>
               </th>
               <th>
@@ -143,7 +134,6 @@ const Customers = () => {
                     fullNameCustomer={customer.fullName}
                     numberPhoneCustomer={customer.numberPhone}
                     emailCustomer={customer.email}
-                    jobCustomer={customer.job}
                     stateCustomer={customer.state}
                     cityCustomer={customer.city}
                   />
@@ -175,10 +165,6 @@ const Customers = () => {
             Email
           </Title>
           <Input placeholder="example@hotmail.com" onChange={handleEmail} />
-          <Title level={5} className="mt-4">
-            Job
-          </Title>
-          <Input placeholder="Carpinter" onChange={handleJob} />
           <Title level={5} className="mt-4">
             State
           </Title>

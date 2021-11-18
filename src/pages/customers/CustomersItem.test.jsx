@@ -29,11 +29,6 @@ test("Correct heading Email", () => {
   expect(screen.getByText("Email")).toHaveTextContent("Email");
 });
 
-test("Correct heading Job", () => {
-  render(<Customers />);
-  expect(screen.getByText("Job")).toHaveTextContent("Job");
-});
-
 test("Correct heading State", () => {
   render(<Customers />);
   expect(screen.getByText("State")).toHaveTextContent("State");
