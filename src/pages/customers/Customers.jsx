@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 
 const { Title } = Typography;
 
-const CUSTOMER_URL = "http://localhost:3000/api/customers";
+const CUSTOMERS_URL = "http://localhost:3000/api/customers";
 
 const Customers = () => {
   const [customersList, setCustomerList] = useState(null);
@@ -17,7 +17,7 @@ const Customers = () => {
 
   useEffect(() => {
     const fetchCustomers = async () => {
-      const customerList = await axios.get(CUSTOMER_URL, {
+      const customerList = await axios.get(CUSTOMERS_URL, {
         headers: {
           user_token: token,
         },
@@ -58,7 +58,7 @@ const Customers = () => {
   const handleNewCustomer = () => {
     axios
       .post(
-        CUSTOMER_URL,
+        CUSTOMERS_URL,
         {
           fullName: fullName,
           numberPhone: numberPhone,
