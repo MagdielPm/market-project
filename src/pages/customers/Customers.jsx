@@ -135,17 +135,17 @@ const Customers = () => {
           </thead>
           <tbody>
             {!!customersList && customersList !== null ? (
-              customersList.map((employe) => {
+              customersList.map((customer) => {
                 return (
                   <CustomerItem
-                    key={employe.id}
-                    id={employe.id}
-                    fullNameCustomer={employe.fullName}
-                    numberPhoneCustomer={employe.numberPhone}
-                    emailCustomer={employe.email}
-                    jobCustomer={employe.job}
-                    stateCustomer={employe.state}
-                    cityCustomer={employe.city}
+                    key={customer.id}
+                    id={customer.id}
+                    fullNameCustomer={customer.fullName}
+                    numberPhoneCustomer={customer.numberPhone}
+                    emailCustomer={customer.email}
+                    jobCustomer={customer.job}
+                    stateCustomer={customer.state}
+                    cityCustomer={customer.city}
                   />
                 );
               })
