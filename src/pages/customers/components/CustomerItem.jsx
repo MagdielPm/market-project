@@ -13,7 +13,6 @@ const CustomerItem = ({
   fullNameCustomer,
   numberPhoneCustomer,
   emailCustomer,
-  jobCustomer,
   stateCustomer,
   cityCustomer,
 }) => {
@@ -44,11 +43,6 @@ const CustomerItem = ({
     setEmail(event.target.value);
   };
 
-  const [job, setJob] = useState(jobCustomer);
-  const handleJob = (event) => {
-    setJob(event.target.value);
-  };
-
   const [state, setState] = useState(stateCustomer);
   const handleState = (event) => {
     setState(event.target.value);
@@ -67,7 +61,6 @@ const CustomerItem = ({
           fullName: fullName,
           numberPhone: numberPhone,
           email: email,
-          job: job,
           state: state,
           city: city,
         },
@@ -100,9 +93,6 @@ const CustomerItem = ({
       </td>
       <td>
         <Text>{email}</Text>
-      </td>
-      <td>
-        <Text>{job}</Text>
       </td>
       <td>
         <Text>{state}</Text>
@@ -164,14 +154,6 @@ const CustomerItem = ({
           placeholder="example@hotmail.com"
           defaultValue={email}
           onChange={handleEmail}
-        />
-        <Title level={5} className="mt-4">
-          Job
-        </Title>
-        <Input
-          placeholder="Carpinter"
-          defaultValue={job}
-          onChange={handleJob}
         />
         <Title level={5} className="mt-4">
           State
