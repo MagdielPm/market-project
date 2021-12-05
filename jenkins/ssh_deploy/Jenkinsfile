@@ -36,8 +36,7 @@ pipeline {
                             configName: 'NGINX_VM', 
                             transfers: [
                                 sshTransfer(
-                                    //execCommand: '''cd && ./ngrok http 80''',
-                                    execCommand: 'sudo mv market/ /var/www/',
+                                    execCommand: 'sudo mv market/ /var/www/ && ./ngrok http 80',
                                     makeEmptyDirs: false,
                                     remoteDirectory: 'market',
                                     removePrefix: 'build', 
