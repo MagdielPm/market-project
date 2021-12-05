@@ -20,11 +20,13 @@ pipeline {
             }
         }
         stage("Recover artifacts from build pipeline") {
-            copyArtifacts(
-                projectName: "market_frontend_ssh_build",
-                selector: upstream(),
-                filter: "build/**"
-            )
+            steps {
+                copyArtifacts(
+                    projectName: "market_frontend_ssh_build",
+                    selector: upstream(),
+                    filter: "build/**"
+                )
+            }
         }
         stage('Copy live version to NGINX vm server') {
             steps {
