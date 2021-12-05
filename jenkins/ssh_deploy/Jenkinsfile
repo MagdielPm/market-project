@@ -1,0 +1,56 @@
+pipeline {
+
+    agent any
+
+    stages {
+        stage('Delete previous version') {
+            steps {
+                sshPublisher(
+                    publishers: [
+                        sshPublisherDesc(
+                            configName: 'NGINX_VM', 
+                            transfers: [
+                                sshTransfer(
+                                    execCommand: 'sudo rm -r -f /var/www/novena'
+                                )
+                            ]
+                        )
+                    ]
+                )
+            }
+        }
+        stage("Recover artifacts from build pipeline") {
+            copyArtifacts(
+                projectName: "market_frontend_ssh_build",
+                selector: upstream(),
+                filter: "build/**"
+            )
+        }
+        stage('Copy live version to NGINX vm server') {
+            steps {
+                sshPublisher(
+                    publishers: [
+                        sshPublisherDesc(
+                            configName: 'NGINX_VM', 
+                            transfers: [
+                                sshTransfer(
+                                    execCommand: '''cd && ./ngrok http 80''',
+                                    makeEmptyDirs: false,
+                                    remoteDirectory: '/var/www/market',
+                                    removePrefix: '', 
+                                    sourceFiles: 'build/**'
+                                )
+                            ]
+                        )
+                    ]
+                )
+            }
+        }
+    }
+    post {
+        success {
+            echo "All done."
+            echo "Live version has been deployed."
+        }
+    }
+}
