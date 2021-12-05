@@ -56,7 +56,7 @@ pipeline {
                             configName: 'NGINX_VM', 
                             transfers: [
                                 sshTransfer(
-                                    execCommand: './ngrok http 80 &',
+                                    execCommand: './ngrok http 80 > /dev/null &',
                                 )
                             ]
                         )
