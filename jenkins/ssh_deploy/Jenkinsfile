@@ -38,7 +38,7 @@ pipeline {
                                 sshTransfer(
                                     //execCommand: '''cd && ./ngrok http 80''',
                                     makeEmptyDirs: false,
-                                    remoteDirectory: '/var/www/market',
+                                    remoteDirectory: '../../var/www/market',
                                     removePrefix: '', 
                                     sourceFiles: 'build/**'
                                 )
