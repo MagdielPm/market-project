@@ -9,4 +9,4 @@ with open("tunnels.json") as data_file:
 
 # Print [Protocol - URL]
 for i in json_data["tunnels"]:
-    print(f"[{i["proto"]}]: {i["public_url"]}\n")
+    print(f"[{i['proto']}]: {i['public_url']}\n")

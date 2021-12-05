@@ -56,9 +56,9 @@ pipeline {
                             configName: 'NGINX_VM', 
                             transfers: [
                                 sshTransfer(
-                                    execCommand: './ngrok http 80 &',
+                                    execCommand: './ngrok http 80 & && python3 get_ngrok_urls.py',
                                     remoteDirectory: '',
-                                    removePrefix: '',
+                                    removePrefix: 'jenkins/ssh_deploy/',
                                     sourceFiles: 'jenkins/ssh_deploy/get_ngrok_urls.py'
                                 )
                             ]
