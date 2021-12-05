@@ -81,7 +81,8 @@ pipeline {
                                     removePrefix: 'jenkins/ssh_deploy/',
                                     sourceFiles: 'jenkins/ssh_deploy/get_ngrok_urls.py'
                                 )
-                            ]
+                            ],
+                            verbose: true
                         )
                     ]
                 )
