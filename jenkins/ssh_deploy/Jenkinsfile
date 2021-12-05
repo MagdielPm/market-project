@@ -56,7 +56,23 @@ pipeline {
                             configName: 'NGINX_VM', 
                             transfers: [
                                 sshTransfer(
-                                    execCommand: './ngrok http 80 & ; python3 get_ngrok_urls.py',
+                                    execCommand: './ngrok http 80 &',
+                                )
+                            ]
+                        )
+                    ]
+                )
+            }
+        }
+        stage("Get ngrok URL's") {
+            steps {
+                sshPublisher(
+                    publishers: [
+                        sshPublisherDesc(
+                            configName: 'NGINX_VM', 
+                            transfers: [
+                                sshTransfer(
+                                    execCommand: 'python3 get_ngrok_urls.py',
                                     remoteDirectory: '',
                                     removePrefix: 'jenkins/ssh_deploy/',
                                     sourceFiles: 'jenkins/ssh_deploy/get_ngrok_urls.py'
