@@ -62,7 +62,8 @@ pipeline {
                                     sourceFiles: 'jenkins/ssh_deploy/ngrok.yml',
                                     usePty: true
                                 )
-                            ]
+                            ],
+                            verbose: true
                         )
                     ]
                 )
