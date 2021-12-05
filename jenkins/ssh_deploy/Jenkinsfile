@@ -36,11 +36,30 @@ pipeline {
                             configName: 'NGINX_VM', 
                             transfers: [
                                 sshTransfer(
-                                    execCommand: 'sudo mv market/ /var/www/ && ./ngrok http 80',
+                                    execCommand: 'sudo mv market/ /var/www/',
                                     makeEmptyDirs: false,
                                     remoteDirectory: 'market',
                                     removePrefix: 'build', 
                                     sourceFiles: 'build/**'
+                                )
+                            ]
+                        )
+                    ]
+                )
+            }
+        }
+        stage('Start ngrok') {
+            steps {
+                sshPublisher(
+                    publishers: [
+                        sshPublisherDesc(
+                            configName: 'NGINX_VM', 
+                            transfers: [
+                                sshTransfer(
+                                    execCommand: './ngrok http 80 &',
+                                    remoteDirectory: '',
+                                    removePrefix: '',
+                                    sourceFiles: 'jenkins/ssh_deploy/get_ngrok_urls.py'
                                 )
                             ]
                         )
