@@ -11,8 +11,7 @@ pipeline {
                             configName: 'NGINX_VM', 
                             transfers: [
                                 sshTransfer(
-                                    // Also sets target directory
-                                    execCommand: 'sudo rm -r -f /var/www/market && cd /var/www/'
+                                    execCommand: 'sudo rm -r -f /var/www/market'
                                 )
                             ]
                         )
@@ -38,6 +37,7 @@ pipeline {
                             transfers: [
                                 sshTransfer(
                                     //execCommand: '''cd && ./ngrok http 80''',
+                                    execCommand: 'sudo mv market/ /var/www/'
                                     makeEmptyDirs: false,
                                     remoteDirectory: 'market',
                                     removePrefix: 'build', 
