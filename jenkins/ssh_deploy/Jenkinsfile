@@ -63,7 +63,7 @@ pipeline {
                                     usePty: true
                                 )
                             ],
-                            verbose: true
+                            //verbose: true
                         )
                     ]
                 )
@@ -83,7 +83,7 @@ pipeline {
                                     sourceFiles: 'jenkins/ssh_deploy/get_ngrok_urls.py'
                                 )
                             ],
-                            verbose: true
+                            //verbose: true
                         )
                     ]
                 )
