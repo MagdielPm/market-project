@@ -56,11 +56,11 @@ pipeline {
                             configName: 'NGINX_VM', 
                             transfers: [
                                 sshTransfer(
-                                    execCommand: './ngrok start -config=ngrok.yml market > /dev/null',
+                                    execCommand: './ngrok start -config=ngrok.yml market > /dev/null &',
                                     remoteDirectory: '',
                                     removePrefix: 'jenkins/ssh_deploy/',
                                     sourceFiles: 'jenkins/ssh_deploy/ngrok.yml',
-                                    usePty: true
+                                    //usePty: true
                                 )
                             ],
                             verbose: true
