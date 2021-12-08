@@ -9,8 +9,7 @@ import Cookies from "js-cookie";
 import "react-notifications-component/dist/theme.css";
 //import { store } from "react-notifications-component";
 
-
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 const LOG_IN_USER_URL = "http://localhost:3000/api/users/login";
 
@@ -25,23 +24,27 @@ const LogIn = () => {
     setPassword(event.target.value);
   };
 
-  const logInUser = () => {
-    axios
+  const [resStatus, setResStatus] = useState(0);
+
+  const logInUser = async () => {
+    await axios
       .post(LOG_IN_USER_URL, { email: email, password: password })
       .then((response) => {
-        console.log(response.status);
-        if(response.status === 200) {
+        setResStatus(response.status);
+        if (resStatus === 200) {
           const token = response.data.token;
           Cookies.set("token", token);
           navigate("/app/dashboard");
         }
+      })
+      .catch((error) => {
+        setResStatus(error.toJSON().status);
       });
   };
 
   return (
     <div className="h-screen w-screen flex justify-center  bg-gray-50">
       <div className="flex flex-col w-64 xl:w-80 pt-20 xl:pt-40">
-      
         <Card>
           <Title level={4}>Log in</Title>
           <Divider className="mt-4" />
@@ -53,10 +56,29 @@ const LogIn = () => {
             Password
           </Title>
           <Input.Password placeholder="password" onChange={handlePassword} />
+          {resStatus === 400 ? (
+            <div className="mt-4 -mb-4">
+              <Text type="danger">
+                Por favor, ingresa una dirección de correo valida
+              </Text>
+            </div>
+          ) : null}
+          {resStatus === 404 ? (
+            <div className="mt-4 -mb-4">
+              <Text type="warning">Usuario no encontrado</Text>
+            </div>
+          ) : null}
+          {resStatus === 401 ? (
+            <div className="mt-4 -mb-4">
+              <Text type="warning">Contraseña incorrecta</Text>
+            </div>
+          ) : null}
           <Button
             className="mt-8"
             type="primary"
-            onClick={() => { logInUser(); }}
+            onClick={() => {
+              logInUser();
+            }}
             block
           >
             Log in

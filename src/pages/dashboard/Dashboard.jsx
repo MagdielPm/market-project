@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "antd/dist/antd.css";
 import { Button, Layout, Menu, Typography } from "antd";
 import { UserOutlined } from "@ant-design/icons";
@@ -14,27 +14,56 @@ import { useNavigate } from "react-router";
 import ReactNotification from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
 
-
 const { Header, Content, Sider } = Layout;
 const { Title } = Typography;
 
 const Dashboard = () => {
   let navigate = useNavigate();
 
+  const [currentToken, setCurrentToken] = useState("");
+
+  useEffect(() => {
+    const validateToken = () => {
+      const token = Cookies.get("token");
+      setCurrentToken(token);
+    };
+    validateToken();
+  }, [currentToken]);
+
   const [currentSection, setCurrentSection] = useState(1);
   function renderSwitch(section) {
     switch (section) {
       case 1:
-        return <div><Employees /></div>;
+        return (
+          <div>
+            <Employees />
+          </div>
+        );
       case 2:
-        return <div><Customers /></div>;
+        return (
+          <div>
+            <Customers />
+          </div>
+        );
       case 3:
-        return <div><Foods /></div>;
+        return (
+          <div>
+            <Foods />
+          </div>
+        );
       case 4:
-        return <div><Products /></div>;
+        return (
+          <div>
+            <Products />
+          </div>
+        );
       default:
         return <div>Customers</div>;
     }
+  }
+
+  if (currentToken === undefined && !currentToken) {
+    navigate("/app/log-in");
   }
 
   return (
@@ -100,10 +129,19 @@ const Dashboard = () => {
       </Sider>
       <Layout>
         <Header className="bg-gray-50 p-0">
-          <Button type="primary" danger style={{position: "relative", float: "right"}} onClick={() => {
-            Cookies.remove("token");
-            navigate("/app/log-in");
-          }}>Log out</Button>
+          <div className="mt-4">
+            <Button
+              type="primary"
+              danger
+              style={{ position: "relative", float: "right" }}
+              onClick={() => {
+                Cookies.remove("token");
+                navigate("/app/log-in");
+              }}
+            >
+              Log out
+            </Button>
+          </div>
         </Header>
         <Content className="mt-6 mr-4 ml-4 mb-6">
           <div className="bg-white p-6 h-full">
