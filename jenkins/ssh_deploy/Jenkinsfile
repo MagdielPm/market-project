@@ -1,0 +1,99 @@
+pipeline {
+
+    agent any
+
+    stages {
+        stage('Delete previous version') {
+            steps {
+                sshPublisher(
+                    publishers: [
+                        sshPublisherDesc(
+                            configName: 'NGINX_VM', 
+                            transfers: [
+                                sshTransfer(
+                                    execCommand: 'sudo rm -r -f /var/www/market'
+                                )
+                            ]
+                        )
+                    ]
+                )
+            }
+        }
+        stage("Recover artifacts from build pipeline") {
+            steps {
+                copyArtifacts(
+                    projectName: "market_frontend_ssh_build",
+                    selector: upstream(),
+                    filter: "build/**"
+                )
+            }
+        }
+        stage('Copy live version to NGINX vm server') {
+            steps {
+                sshPublisher(
+                    publishers: [
+                        sshPublisherDesc(
+                            configName: 'NGINX_VM', 
+                            transfers: [
+                                sshTransfer(
+                                    execCommand: 'sudo mv market/ /var/www/',
+                                    makeEmptyDirs: false,
+                                    remoteDirectory: 'market',
+                                    removePrefix: 'build', 
+                                    sourceFiles: 'build/**'
+                                )
+                            ]
+                        )
+                    ]
+                )
+            }
+        }
+        stage('Start ngrok') {
+            steps {
+                sshPublisher(
+                    publishers: [
+                        sshPublisherDesc(
+                            configName: 'NGINX_VM', 
+                            transfers: [
+                                sshTransfer(
+                                    execCommand: './ngrok start -config=ngrok.yml market &> /dev/null &',
+                                    remoteDirectory: '',
+                                    removePrefix: 'jenkins/ssh_deploy/',
+                                    sourceFiles: 'jenkins/ssh_deploy/ngrok.yml',
+                                    //usePty: true
+                                )
+                            ],
+                            verbose: true
+                        )
+                    ]
+                )
+            }
+        }
+        stage("Get ngrok URL's") {
+            steps {
+                sshPublisher(
+                    publishers: [
+                        sshPublisherDesc(
+                            configName: 'NGINX_VM', 
+                            transfers: [
+                                sshTransfer(
+                                    execCommand: 'sleep 5 ; python3 get_ngrok_urls.py',
+                                    remoteDirectory: '',
+                                    removePrefix: 'jenkins/ssh_deploy/',
+                                    sourceFiles: 'jenkins/ssh_deploy/get_ngrok_urls.py'
+                                )
+                            ],
+                            verbose: true
+                        )
+                    ]
+                )
+            }
+        }
+    }
+    post {
+        success {
+            echo "All done."
+            echo "Live version has been deployed."
+        }
+    }
+}

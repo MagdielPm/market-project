@@ -21,7 +21,7 @@
   "scripts": {
     "dev": "PORT=2000 craco start",
     "build": "craco build",
-    "test": "CI=true craco test --watchAll"
+    "test": "craco test --watchAll=false"
   },
   "eslintConfig": {
     "extends": [

@@ -1,0 +1,7 @@
+console_ui: false
+log: false
+tunnels:
+  market:
+    proto: http
+    addr: 80
+    host_header: preserve
